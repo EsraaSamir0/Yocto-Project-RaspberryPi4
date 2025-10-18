@@ -1,10 +1,10 @@
-#Yocto Infotainment Project for RaspberryPi4
+# Yocto Infotainment Project for RaspberryPi4
 ---
 
-##Target Hardware:
+## Target Hardware:
 - Raspberry Pi 4
 
-##Packages:
+## Packages:
 - SSH: Secure Shell for remote access.
 - WIFI addon: Support for wireless connectivity.
 - Nano: Simple text editor.
@@ -12,13 +12,13 @@
 - Audio: Support for audio playback and recording.
 - Native Hello World Application: A sample application for testing.
 
-##Image:
+## Image:
 - Image recipe.
 
-##Kernel:
+## Kernel:
 - Version: 5.15.x
 
-##Distributions:
+## Distributions:
 **Distribution 1:**
 - Includes Meta-qt5.
 - Uses systemd as the init system.
@@ -28,4 +28,5 @@
 - Uses sysvinit as the init system.
 
 ---
+
 ![Project Overview](Images/project_overview.png)
