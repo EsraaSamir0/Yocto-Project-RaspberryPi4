@@ -1,5 +1,4 @@
-# Yocto Infotainment Project for RaspberryPi4
-
+### Application Requirements
 ## Target Hardware:
 - Raspberry Pi 4
 

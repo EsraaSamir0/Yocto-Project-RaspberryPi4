@@ -1,4 +1,6 @@
-**A step-by-step breakdown of The Project**
+## Yocto Infotainment Project for RaspberryPi4
+A step-by-step breakdown of The Project
+
 ---
 ## Pre-development Stage
 ### Install Dependencies (Ubuntu)
@@ -29,36 +31,35 @@ This creates the `build` directory and sets up environment variables.
 3. **`meta/conf/layer.conf`** → Defines how BitBake processes each layer, including priorities and dependencies.
 
 ### BitBake Custom Layers 
-   [meta-distros(audio, ivi), meta-ivi]
 - **`meta-distros`** → 2 distribution configurations (Distro 1 : Infotainment, Distro 2 : Audio).
 - **`meta-IVI`** → Contains an image recipe with a C++ application and Nano editor.
 
 ### Integrate BSP Layer for Raspberry Pi
-1- go to (https://layers.openembedded.org/layerindex/branch/kirkstone/layers/)
-2- search for raspberrypi, and select (meta-raspberrypi) layer
+1. go to (https://layers.openembedded.org/layerindex/branch/kirkstone/layers/)
+2. search for raspberrypi, and select (meta-raspberrypi) layer
 ![meta-raspberrypi](Images/meta-raspberrypi.png)
-3- clone meta-raspberrypi from here :
+3. clone meta-raspberrypi from here :
 ```bash
 git clone -b kirkstone git://git.yoctoproject.org/meta-raspberrypi
 ```
 ![meta-raspberrypi-git](Images/meta-raspberrypi-git.png)
-4- add the layer to the bblayers.conf
+4. add the layer to the bblayers.conf
 ```bash
 bitbake-layers add-layer ../meta-raspberrypi
 ```
-5- clone the openembedded-core
+5. clone the openembedded-core
 ```bash
 git clone -b kirkstone git://git.openembedded.org/openembedded-core
 ```
 ### Integrate Qt-5
-1- go to  (https://layers.openembedded.org/layerindex/branch/kirkstone/layers/)
-2- search for Qt, and select (meta-qt5) layer
-![meta-qt5](Images/meta-qt5.png.png)
-3- clone meta-qt5 from here :
+1. go to  (https://layers.openembedded.org/layerindex/branch/kirkstone/layers/)
+2. search for Qt, and select (meta-qt5) layer
+![meta-qt5](Images/meta-qt5.png)
+3. clone meta-qt5 from here :
 ```bash
 git clone -b kirkstone https://github.com/meta-qt5/meta-qt5.git
 ```
-4- add the layer to the bblayers.conf
+4. add the layer to the bblayers.conf
 ```bash
 bitbake-layers add-layer ../meta-qt5
 ```
