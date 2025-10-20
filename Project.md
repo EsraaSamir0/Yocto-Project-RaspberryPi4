@@ -72,7 +72,15 @@ bitbake-layers add-layer ../meta-qt5
 
 ---
 ## Create SW Layer (meta-IVI)
+1. create layer
+```bash
+bitbake create-layer meta-IVI
+```
+2. add meta-IVI to the bblayers.conf
 
+```bash
+bitbake add-layer meta-IVI
+```
 ---
 ## Create Cpp Package Recipe `helloworld`
 
@@ -81,7 +89,20 @@ bitbake-layers add-layer ../meta-qt5
 
 ---
 ## Integrate Audio
-
+1. Create the `classes/` directory inside (meta-IVI) layer
+2. create the class (audio.bbclass)
+```bash
+cd meta-IVI
+mkdir -p classes
+touch classes/audio.bbclass
+```
+3. Edit the class: 
+```bash
+IMAGE_INSTALL:append = " pavucontrol pulseaudio pulseaudio-module-dbus-protocol pulseaudio-server \
+        pulseaudio-module-loopback pulseaudio-module-bluetooth-discover alsa-ucm-conf pulseaudio-module-bluetooth-policy alsa-topology-conf alsa-state alsa-lib alsa-tools \
+        pulseaudio-module-bluez5-device pulseaudio-module-bluez5-discover alsa-utils alsa-plugins packagegroup-rpi-test can-utils net-tools gstreamer1.0 \
+        iproute2 iputils libsocketcan bluez5 i2c-tools hostapd iptables"
+```
 ---
 ## Create the Image Recipe: ivi-test-image.bb
 
