@@ -7,7 +7,7 @@
 - SSH: Secure Shell for remote access.
 - WIFI addon: Support for wireless connectivity.
 - Nano: Simple text editor.
-- Meta-qt5: Qt5 layer for developing GUI applications.
+- Meta-qt5: Qt5 layer for developing graphical applications.
 - Audio: Support for audio playback and recording.
 - Native Hello World Application: A sample application for testing.
 
