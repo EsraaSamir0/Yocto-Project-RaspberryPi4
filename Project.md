@@ -1,5 +1,5 @@
-# Steps of the Project
-
+## A step-by-step breakdown of The Project
+---
 ## Pre-development Stage
 ### Install Dependencies (Ubuntu)
 
@@ -18,12 +18,10 @@
 
 ---
 ## Create Distro Layer (meta-distros)
-### Create Infotainment Distro
+### **Create Infotainment Distro**
+### Enable Systemd for Infotainment Distribution
 
-## Enable Systemd for Infotainment Distribution
-
----
-### Create Audio Distro
+### **Create Audio Distro**
 
 ---
 ## Create SW Layer (meta-IVI)
