@@ -1,5 +1,4 @@
 # Yocto Infotainment Project for RaspberryPi4
----
 
 ## Target Hardware:
 - Raspberry Pi 4
@@ -19,11 +18,11 @@
 - Version: 5.15.x
 
 ## Distributions:
-**Distribution 1:**
+**Distribution 1: (Infotainment)**
 - Includes Meta-qt5.
 - Uses systemd as the init system.
 
-**Distribution 2:**
+**Distribution 2: (Audio)**
 - Excludes Meta-qt5.
 - Uses sysvinit as the init system.
 
