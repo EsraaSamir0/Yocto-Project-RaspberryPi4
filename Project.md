@@ -76,11 +76,12 @@ touch meta-distros/conf/distro/audio.conf
 bitbake add-layer meta-distros
 ```
 
-### **Create Infotainment Distro**
+### Create Infotainment Distro
 Edit `ivi.conf`:
 
-### Enable Systemd for Infotainment Distribution (`ivi.conf`)
+### **Enable Systemd for Infotainment Distribution (`ivi.conf`)**
 Poky uses `sysvinit` by default. Switch to `systemd`:
+
 **Add systemd to the distro**
 - go to meta-distros/conf/distro
 - create include directory
@@ -91,6 +92,7 @@ VIRTUAL-RUNTIME_init_manager = "systemd"
 VIRTUAL-RUNTIME_initscript = "systemd-compat-units"
 ```
 **Configure Systemd** 
+
 Edit `ivi.conf`: 
 
 ```bash
