@@ -86,6 +86,38 @@ bitbake add-layer meta-IVI
 
 ---
 ## Integrate Nano
+1. create `receipes-editor` directory inside meta-IVI layer
+2. create `nano` directory inside `receipes-editor` 
+3. create nano receipe using "recipetool"
+```bash
+mkdir -p meta-IVI/recipes-editors/nano
+cd meta-IVI/recipes-editors/nano
+recipetool create -o nano_1.0.bb https://ftp.gnu.org/gnu/nano/nano-7.2.tar.xz
+bitbake nano
+```
+4. Install dependencies required for building Nano
+```bash 
+sudo apt install autoconf automake autopoint gcc gettext git groff make pkg-config texinfo
+```
+5. Fetch and unpack the source code
+```bash
+bitbake -c fetch nano
+bitbake -c unpack nano
+```
+6. Find the WORKDIR path:
+```bash
+bitbake -e nano | grep -i "^WORKDIR="
+```
+Navigate to the `WORKDIR/git` path.
+7. Run autogen.sh to generate the configure script:
+```bash
+./autogen.sh
+```
+8. Build the Recipe:
+```bash
+bitbake nano
+```
+
 
 ---
 ## Integrate Audio
