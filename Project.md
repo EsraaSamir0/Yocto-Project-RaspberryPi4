@@ -65,10 +65,49 @@ bitbake-layers add-layer ../meta-qt5
 ```
 ---
 ## Create Distribution Layer (meta-distros)
+1. Create the Layer Directory Structure
+```bash
+mkdir -p meta-distros/conf/distro 
+touch meta-distros/conf/distro/ivi.conf
+touch meta-distros/conf/distro/audio.conf
+```
+2. Add `meta-distros` layer to the bblayers.conf
+``` bash 
+bitbake add-layer meta-distros
+```
+
 ### **Create Infotainment Distro**
-### Enable Systemd for Infotainment Distribution
+Edit `ivi.conf`:
+
+### Enable Systemd for Infotainment Distribution (`ivi.conf`)
+Poky uses `sysvinit` by default. Switch to `systemd`:
+**Add systemd to the distro**
+- go to meta-distros/conf/distro
+- create include directory
+- create systemd.inc and add this : 
+```bash
+DISTRO_FEATURES:append = " systemd "
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscript = "systemd-compat-units"
+```
+**Configure Systemd** 
+Edit `ivi.conf`: 
+
+```bash
+#include systemd.inc
+require conf/distro/include/systemd.inc
+
+# install systemd  as init manager 
+DISTRO_FEATURES:append = " systemd" 
+
+# select systemd as init manager 
+VIRTUAL-RUNTIME_init_manager = " systemd"
+VIRTUAL-RUNTIME_initscripts = " systemd-compat-units"
+```
 
 ### **Create Audio Distro**
+ Edit `audio.conf`:
+
 
 ---
 ## Create SW Layer (meta-IVI)
@@ -108,7 +147,8 @@ bitbake -c unpack nano
 ```bash
 bitbake -e nano | grep -i "^WORKDIR="
 ```
-Navigate to the `WORKDIR/git` path.
+Navigate to the `WORKDIR/git` path
+
 7. Run autogen.sh to generate the configure script:
 ```bash
 ./autogen.sh
@@ -117,7 +157,6 @@ Navigate to the `WORKDIR/git` path.
 ```bash
 bitbake nano
 ```
-
 
 ---
 ## Integrate Audio
