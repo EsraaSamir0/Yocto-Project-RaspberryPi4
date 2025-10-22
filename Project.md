@@ -340,7 +340,7 @@ IMAGE_INSTALL:append = " pavucontrol pulseaudio pulseaudio-module-dbus-protocol 
 ### Create Directory Structure 
 1. create `recipes-core` directory inside meta-IVI layer
 2. create `images` directory inside `receipes-core` 
-3. create ivi-test-image.bb file 
+3. create `ivi-test-image.bb` file 
 
 ```bash 
 mkdir -p meta-IVI/recipes-core/images
@@ -359,6 +359,7 @@ inherit audio
 **Package Installation** `IMAGE_INSTALL`: Specifies additional software packages to be included in the image `nano`, `helloworld`, `openssh`
 
 **Image Features** `IMAGE_FEATURES`: Defines additional capabilities like SSH, debugging tools, or package management `ssh-server-openssh`, `debug-tweaks`.
+
 **Machine Features** `MACHINE_FEATURES`: Defines hardware-specific features available for the target machine `alsa`, `wifi`, `bluetooth`.
 ---
 ## Building an Image
