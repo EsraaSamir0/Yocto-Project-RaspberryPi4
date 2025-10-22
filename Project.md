@@ -126,29 +126,23 @@ DISTRO ?= "ivi"
 ### Enable Systemd for Infotainment Distribution (`ivi.conf`)
 Poky uses `sysvinit` by default. Switch to `systemd`:
 
-**1. Add systemd to the distro**
+**Add systemd to the distro and Configure it**
 - go to meta-distros/conf/distro
 - create include directory
 - create systemd.inc and add this : 
 ```bash
-DISTRO_FEATURES:append = " systemd "
-VIRTUAL-RUNTIME_init_manager = "systemd"
-VIRTUAL-RUNTIME_initscript = "systemd-compat-units"
-```
-**2. Configure Systemd** 
-
-Edit `ivi.conf`: 
-
-```bash
-#include systemd.inc
-require conf/distro/include/systemd.inc
-
 # install systemd  as init manager 
 DISTRO_FEATURES:append = " systemd" 
 
 # select systemd as init manager 
 VIRTUAL-RUNTIME_init_manager = " systemd"
 VIRTUAL-RUNTIME_initscripts = " systemd-compat-units"
+```
+
+Edit `ivi.conf` to include systemd.inc: 
+```bash
+#include systemd.inc
+require conf/distro/include/systemd.inc
 ```
 
 ### **Create Audio Distro**
