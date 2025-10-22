@@ -78,11 +78,57 @@ bitbake add-layer meta-distros
 
 ### Create Infotainment Distro
 Edit `ivi.conf`:
+```bash 
+DISTRO="ivi"
+DISTRO_NAME="Bullet-ivi"
+DISTRO_VERSION="1.0"
+
+MAINTAINER="esraasamir609@gmail.com"
+
+
+# SDK Information.
+SDK_VENDOR = "-bulletSDK"
+SDK_VERSION = "${@d.getVar('DISTRO_VERSION').replace('snapshot-${METADATA_REVISION}', 'snapshot')}"
+SDK_VERSION[vardepvalue] = "${SDK_VERSION}"
+
+SDK_NAME = "${DISTRO}-${TCLIBC}-${SDKMACHINE}-${IMAGE_BASENAME}-${TUNE_PKGARCH}-${MACHINE}"
+# Installation path --> can be changed to ${HOME}-${DISTRO}-${SDK_VERSION}
+SDKPATHINSTALL = "/opt/${DISTRO}/${SDK_VERSION}" 
+
+# Disribution Feature --> NOTE: used to add customize package (for package usage).
+
+# infotainment --> INFOTAINMENT
+
+INFOTAINMENT_DEFAULT_DISTRO_FEATURES = "largefile opengl ptest multiarch vulkan x11 bluez5 bluetooth wifi ivi_variant"
+AUDIO_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
+AUDIO_DEFAULT_EXTRA_RRECOMMENDS = "kernel-module-af-packet"
+
+# TODO: to be org.
+
+DISTRO_FEATURES ?= "${DISTRO_FEATURES_DEFAULT} ${INFOTAINMENT_DEFAULT_DISTRO_FEATURES} userland"
+
+
+# prefered version for packages.
+PREFERRED_VERSION_linux-yocto ?= "5.15%"
+PREFERRED_VERSION_linux-yocto-rt ?= "5.15%"
+
+
+# Build System configuration.
+
+LOCALCONF_VERSION="2"
+
+# add poky sanity bbclass
+INHERIT += "poky-sanity"
+```
+Update `local.conf` to use infotainment distro:
+```bash
+DISTRO ?= "ivi"
+```
 
 ### **Enable Systemd for Infotainment Distribution (`ivi.conf`)**
 Poky uses `sysvinit` by default. Switch to `systemd`:
 
-**Add systemd to the distro**
+**1. Add systemd to the distro**
 - go to meta-distros/conf/distro
 - create include directory
 - create systemd.inc and add this : 
@@ -91,7 +137,7 @@ DISTRO_FEATURES:append = " systemd "
 VIRTUAL-RUNTIME_init_manager = "systemd"
 VIRTUAL-RUNTIME_initscript = "systemd-compat-units"
 ```
-**Configure Systemd** 
+**2. Configure Systemd** 
 
 Edit `ivi.conf`: 
 
