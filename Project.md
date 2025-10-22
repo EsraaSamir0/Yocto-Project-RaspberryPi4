@@ -51,6 +51,7 @@ bitbake-layers add-layer ../meta-raspberrypi
 ```bash
 git clone -b kirkstone git://git.openembedded.org/openembedded-core
 ```
+
 ### Integrate Qt-5
 1. go to  (https://layers.openembedded.org/layerindex/branch/kirkstone/layers/)
 2. search for Qt, and select (meta-qt5) layer
@@ -78,6 +79,7 @@ bitbake add-layer meta-distros
 
 ### Create Infotainment Distro
 Edit `ivi.conf`:
+
 ```bash 
 DISTRO="ivi"
 DISTRO_NAME="Bullet-ivi"
@@ -206,7 +208,7 @@ bitbake add-layer meta-IVI
 ## Create Cpp App Recipe `helloworld`
 1. Create `recipes-examples` directory inside (meta-IVI) layer
 2. create `helloworld` directory inside `receipes-examples` 
-3. create hellowworld receipe using the "recipetool"
+3. create helloworld receipe using the "recipetool"
 ```bash
 mkdir -p meta-IVI/receipes-examples/helloworld
 cd meta-IVI/receipes-examples/helloworld
@@ -267,6 +269,7 @@ do_install() {
 **do_compile ()**
 This function is automatically called during the build process to compile source code.
 - `${CXX}` → Uses the C++ compiler set by Yocto.
+
 **do_install ()**
 used for copying and setting file permissions.
 - `install -d` → Creates the destination directory.
@@ -282,6 +285,7 @@ bitbake helloworld
 1. create `recipes-editor` directory inside meta-IVI layer
 2. create `nano` directory inside `receipes-editor` 
 3. create nano receipe using "recipetool"
+
 ```bash
 mkdir -p meta-IVI/recipes-editors/nano
 cd meta-IVI/recipes-editors/nano
@@ -304,9 +308,11 @@ bitbake -e nano | grep -i "^WORKDIR="
 Navigate to the `WORKDIR/git` path
 
 7. Run autogen.sh to generate the configure script:
+
 ```bash
 ./autogen.sh
 ```
+
 8. Build the Recipe:
 ```bash
 bitbake nano
@@ -316,6 +322,7 @@ bitbake nano
 ## Integrate Audio
 1. Create the `classes/` directory inside (meta-IVI) layer
 2. create the class (audio.bbclass)
+
 ```bash
 cd meta-IVI
 mkdir -p classes
@@ -330,12 +337,28 @@ IMAGE_INSTALL:append = " pavucontrol pulseaudio pulseaudio-module-dbus-protocol 
 ```
 ---
 ## Create the Image Recipe: ivi-test-image.bb
+### Create Directory Structure 
+1. create `recipes-core` directory inside meta-IVI layer
+2. create `images` directory inside `receipes-core` 
+3. create ivi-test-image.bb file 
 
-### Inheritance 
+```bash 
+mkdir -p meta-IVI/recipes-core/images
+touch meta-IVI/recipes-core/images/ivi-test-image.bb
+```
+### Define Image Recipe
 
-### Package Installation 
 
-### Image Features 
-### Machine Features 
+**Base Image** `require`: Defines the core structure of the image by inheriting from an existing base image `rpi-test-image`.
+
+**Inheritance** `inherit`: Some images inherit special classes that modify their behavior
+- Inherit `audio.bbclass` for `audio` distro.
+```bash 
+inherit audio
+```
+**Package Installation** `IMAGE_INSTALL`: Specifies additional software packages to be included in the image `nano`, `helloworld`, `openssh`
+
+**Image Features** `IMAGE_FEATURES`: Defines additional capabilities like SSH, debugging tools, or package management `ssh-server-openssh`, `debug-tweaks`.
+**Machine Features** `MACHINE_FEATURES`: Defines hardware-specific features available for the target machine `alsa`, `wifi`, `bluetooth`.
 ---
 ## Building an Image
