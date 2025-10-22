@@ -364,3 +364,9 @@ inherit audio
 
 ---
 ## Building an Image
+
+Choose the Desired Distro `audio` or `ivi` in `local.conf` and Run:
+
+```bash
+bitbake ivi-test-image
+```
