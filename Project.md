@@ -361,5 +361,6 @@ inherit audio
 **Image Features** `IMAGE_FEATURES`: Defines additional capabilities like SSH, debugging tools, or package management `ssh-server-openssh`, `debug-tweaks`.
 
 **Machine Features** `MACHINE_FEATURES`: Defines hardware-specific features available for the target machine `alsa`, `wifi`, `bluetooth`.
+
 ---
 ## Building an Image
