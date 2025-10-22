@@ -125,8 +125,6 @@ DISTRO ?= "ivi"
 
 ### Enable Systemd for Infotainment Distribution (`ivi.conf`)
 Poky uses `sysvinit` by default. Switch to `systemd`:
-
-**Add systemd to the distro and Configure it**
 - go to meta-distros/conf/distro
 - create include directory
 - create systemd.inc and add this : 
@@ -205,11 +203,83 @@ bitbake create-layer meta-IVI
 bitbake add-layer meta-IVI
 ```
 ---
-## Create Cpp Package Recipe `helloworld`
+## Create Cpp App Recipe `helloworld`
+1. Create `recipes-examples` directory inside (meta-IVI) layer
+2. create `helloworld` directory inside `receipes-examples` 
+3. create hellowworld receipe using the "recipetool"
+```bash
+mkdir -p meta-IVI/receipes-examples/helloworld
+cd meta-IVI/receipes-examples/helloworld
+recipetool create -o helloworld_1.0.bb https://github.com/embeddedlinuxworkshop/y_t1.git
+```
+**After generating the recipe and adding some changes, the Final Recipe:**
+```bash
+# Recipe created by recipetool
+# This is the basis of a recipe and may need further editing in order to be fully functional.
+# (Feel free to remove these comments when editing.)
 
+# TODO: 1. Decumentation Variables
+SUMMARY		= "Example for Native C++ Application for Testing YOCTO"
+DESCRIPTION	= "Example for Native C++ Application for Testing YOCTO. Provided by Bullet Guru"
+HOMEPAGE	= "http://github.com/embeddedlinuxworkshop/y_t1"
+
+# Unable to find any files that looked like license statements. Check the accompanying
+# documentation and source headers and set LICENSE and LIC_FILES_CHKSUM accordingly.
+#
+# NOTE: LICENSE is being set to "CLOSED" to allow you to at least start building - if
+# this is not accurate with respect to the licensing of the software being built (it
+# will not be in most cases) you must specify the correct value before using this
+# recipe for anything other than initial testing/development!
+
+# TODO: 2. Licence Variables
+LICENSE = "CLOSED"
+LIC_FILES_CHKSUM = ""
+
+# TODO: 3. Source Code Variables
+SRC_URI = "git://github.com/embeddedlinuxworkshop/y_t1.git;protocol=https;branch=master"
+
+# Modify these as desired
+PV = "1.0+git${SRCPV}"
+SRCREV = "49600e3cd69332f0e7b8103918446302457cd950"
+
+S = "${WORKDIR}/git"
+
+# TODO: 4. Tasks Excuted through the Build Engine
+# NOTE: no Makefile found, unable to determine what needs to be done
+
+
+do_compile () {
+     # Specify compilation commands here
+     ${CXX} ${CXXFLAGS} ${LDFLAGS} ${S}/main.cpp -o ${B}/helloworld
+}
+
+do_install() {
+      # Specify install commands here
+	
+      # 1. manipulate -> ${WORKDIR}/image
+      # 2. Create Directory ${WORKDIR}/image/usr/bin
+      install -d ${D}/${bindir}
+      
+      #3. installing hello bin in Directory ${WORKDIR}/image/usr/bin
+      install -m 0755 ${B}/helloworld ${D}${bindir}
+}
+```
+**do_compile ()**
+This function is automatically called during the build process to compile source code.
+- `${CXX}` → Uses the C++ compiler set by Yocto.
+**do_install ()**
+used for copying and setting file permissions.
+- `install -d` → Creates the destination directory.
+- `${D}` `${bindir}` → Installs the compiled binary into `/usr/bin/` inside the target filesystem.
+- `install -m 0755` → Copies the file and sets permissions (rwxr-xr-x).
+
+**Build the Recipe:**
+```bash
+bitbake helloworld
+```
 ---
 ## Integrate Nano
-1. create `receipes-editor` directory inside meta-IVI layer
+1. create `recipes-editor` directory inside meta-IVI layer
 2. create `nano` directory inside `receipes-editor` 
 3. create nano receipe using "recipetool"
 ```bash
