@@ -421,7 +421,7 @@ After successful configuration and build setup, the Yocto environment was valida
 bitbake-layers show-layers
 ```
 **Output:**
-
+```bash 
 layer                 path                                      priority
 ==========================================================================
 meta                  /home/esraa/poky/meta                     5
@@ -432,7 +432,7 @@ meta-openembedded     /home/esraa/poky/meta-openembedded        7
 meta-qt5              /home/esraa/poky/meta-qt5                 7
 meta-distros          /home/esraa/poky/meta-distros             8
 meta-IVI              /home/esraa/poky/meta-IVI                 8
-
+``` 
 ![BitBake Layers Output](Images/bitbakelayers.png)
 
 This confirms that all layers were successfully added to the build environment, including:
