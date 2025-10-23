@@ -1,7 +1,7 @@
 ## Yocto Infotainment Project for RaspberryPi4
 This project demonstrates how to build a custom Linux-based image for Raspberry Pi 4 using the Yocto Project. It includes two different distributions (Infotainment & Audio), integrates Qt5 for GUI applications, and adds custom software layers for testing, audio features, and system configuration. 
 
-Here's a step-by-step breakdown of The Project : 
+Here's a step-by-step breakdown of the Project : 
 
 ---
 ## Pre-development Stage
@@ -71,6 +71,7 @@ git clone -b kirkstone git://git.openembedded.org/openembedded-core
 ```
 
 ### Integrate Qt-5
+
 1. go to  (https://layers.openembedded.org/layerindex/branch/kirkstone/layers/)
 2. search for Qt, and select (meta-qt5) layer
 ![meta-qt5](Images/meta-qt5.png)
@@ -301,13 +302,13 @@ bitbake helloworld
 ```
 ---
 ## Integrate Nano
-1. create `recipes-editor` directory inside meta-ivi layer
-2. create `nano` directory inside `receipes-editor` 
-3. create nano receipe using "recipetool"
+1. create `recipes-editor` directory inside `meta-ivi` layer
+2. create `nano` directory inside `recipes-editor` 
+3. create nano recipe using "recipetool"
 
 ```bash
-mkdir -p meta-ivi/recipes-editors/nano
-cd meta-ivi/recipes-editors/nano
+mkdir -p meta-ivi/recipes-editor/nano
+cd meta-ivi/recipes-editor/nano
 recipetool create -o nano_1.0.bb https://ftp.gnu.org/gnu/nano/nano-7.2.tar.xz
 bitbake nano
 ```
@@ -358,7 +359,7 @@ IMAGE_INSTALL:append = " pavucontrol pulseaudio pulseaudio-module-dbus-protocol 
 ## Create the Image Recipe: ivi-test-image.bb
 
 ### Create Directory Structure 
-1. create `recipes-core` directory inside meta-ivi layer
+1. create `recipes-core` directory inside `meta-ivi` layer
 2. create `images` directory inside `recipes-core` 
 3. create `ivi-test-image.bb` file 
 
@@ -444,3 +445,4 @@ You can find these under:
 ```bash 
 build/tmp/deploy/images/raspberrypi4/
 ```
+
