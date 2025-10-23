@@ -49,7 +49,7 @@ PARALLEL_MAKE="-j 8"
 
 ### BitBake Custom Layers 
 - **`meta-distros`** → 2 distribution configurations (Distro 1: Infotainment, Distro 2: Audio).
-- **`meta-IVI`** → Contains an image recipe with a C++ application and Nano editor.
+- **`meta-ivi`** → Contains an image recipe with a C++ application and Nano editor.
 
 ### Integrate BSP Layer for Raspberry Pi
 
@@ -213,24 +213,24 @@ Update `local.conf` to use audio distro:
 DISTRO ?= "audio"
 ```
 ---
-## Create SW Layer (meta-IVI)
+## Create SW Layer (meta-ivi)
 1. create layer
 ```bash
-bitbake create-layer meta-IVI
+bitbake create-layer meta-ivi
 ```
-2. add meta-IVI to the bblayers.conf
+2. add meta-ivi to the bblayers.conf
 
 ```bash
-bitbake add-layer meta-IVI
+bitbake add-layer meta-ivi
 ```
 ---
 ## Create Cpp App Recipe `helloworld`
-1. Create `recipes-examples` directory inside (meta-IVI) layer
+1. Create `recipes-examples` directory inside (meta-ivi) layer
 2. create `helloworld` directory inside `recipes-examples` 
 3. create helloworld recipe using the "recipetool"
 ```bash
-mkdir -p meta-IVI/recipes-examples/helloworld
-cd meta-IVI/recipes-examples/helloworld
+mkdir -p meta-ivi/recipes-examples/helloworld
+cd meta-ivi/recipes-examples/helloworld
 recipetool create -o helloworld_1.0.bb https://github.com/embeddedlinuxworkshop/y_t1.git
 ```
 **After generating the recipe and adding some changes, the Final Recipe:**
@@ -301,13 +301,13 @@ bitbake helloworld
 ```
 ---
 ## Integrate Nano
-1. create `recipes-editor` directory inside meta-IVI layer
+1. create `recipes-editor` directory inside meta-ivi layer
 2. create `nano` directory inside `receipes-editor` 
 3. create nano receipe using "recipetool"
 
 ```bash
-mkdir -p meta-IVI/recipes-editors/nano
-cd meta-IVI/recipes-editors/nano
+mkdir -p meta-ivi/recipes-editors/nano
+cd meta-ivi/recipes-editors/nano
 recipetool create -o nano_1.0.bb https://ftp.gnu.org/gnu/nano/nano-7.2.tar.xz
 bitbake nano
 ```
@@ -339,11 +339,11 @@ bitbake nano
 
 ---
 ## Integrate Audio
-1. Create the `classes/` directory inside (meta-IVI) layer
+1. Create the `classes/` directory inside (meta-ivi) layer
 2. create the class (audio.bbclass)
 
 ```bash
-cd meta-IVI
+cd meta-ivi
 mkdir -p classes
 touch classes/audio.bbclass
 ```
@@ -358,13 +358,13 @@ IMAGE_INSTALL:append = " pavucontrol pulseaudio pulseaudio-module-dbus-protocol 
 ## Create the Image Recipe: ivi-test-image.bb
 
 ### Create Directory Structure 
-1. create `recipes-core` directory inside meta-IVI layer
+1. create `recipes-core` directory inside meta-ivi layer
 2. create `images` directory inside `recipes-core` 
 3. create `ivi-test-image.bb` file 
 
 ```bash 
-mkdir -p meta-IVI/recipes-core/images
-touch meta-IVI/recipes-core/images/ivi-test-image.bb
+mkdir -p meta-ivi/recipes-core/images
+touch meta-ivi/recipes-core/images/ivi-test-image.bb
 ```
 ### Define Image Recipe
 ```bash 
@@ -425,7 +425,7 @@ bitbake-layers show-layers
 ![BitBake Layers Output](Images/bitbakelayers.png)
 
 This confirms that all layers were successfully added to the build environment, including:
-- **Board Support Layer (BSP):** `meta-raspberrypi`
+- **Board Support Layer:** `meta-raspberrypi`
 - **UI Framework:** `meta-qt5`
 - **Custom Distributions:** `meta-distros`
 - **Application Layer:** `meta-ivi`
