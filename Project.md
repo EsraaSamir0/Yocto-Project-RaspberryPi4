@@ -1,5 +1,6 @@
 ## Yocto Infotainment Project for RaspberryPi4
-A step-by-step breakdown of The Project
+This project demonstrates how to build a custom Linux-based image for Raspberry Pi 4 using the Yocto Project. It includes two different distributions (Infotainment & Audio), integrates Qt5 for GUI applications, and adds custom software layers for testing, audio features, and system configuration.
+Here's a step-by-step breakdown of The Project : 
 
 ---
 ## Pre-development Stage
@@ -91,7 +92,7 @@ touch meta-distros/conf/distro/audio.conf
 ```
 2. Add `meta-distros` layer to the bblayers.conf
 ``` bash 
-bitbake add-layer meta-distros
+bitbake-layers add-layer meta-distros
 ```
 
 ### Create Infotainment Distro
@@ -224,11 +225,11 @@ bitbake add-layer meta-IVI
 ---
 ## Create Cpp App Recipe `helloworld`
 1. Create `recipes-examples` directory inside (meta-IVI) layer
-2. create `helloworld` directory inside `receipes-examples` 
-3. create helloworld receipe using the "recipetool"
+2. create `helloworld` directory inside `recipes-examples` 
+3. create helloworld recipe using the "recipetool"
 ```bash
-mkdir -p meta-IVI/receipes-examples/helloworld
-cd meta-IVI/receipes-examples/helloworld
+mkdir -p meta-IVI/recipes-examples/helloworld
+cd meta-IVI/recipes-examples/helloworld
 recipetool create -o helloworld_1.0.bb https://github.com/embeddedlinuxworkshop/y_t1.git
 ```
 **After generating the recipe and adding some changes, the Final Recipe:**
@@ -357,7 +358,7 @@ IMAGE_INSTALL:append = " pavucontrol pulseaudio pulseaudio-module-dbus-protocol 
 
 ### Create Directory Structure 
 1. create `recipes-core` directory inside meta-IVI layer
-2. create `images` directory inside `receipes-core` 
+2. create `images` directory inside `recipes-core` 
 3. create `ivi-test-image.bb` file 
 
 ```bash 
