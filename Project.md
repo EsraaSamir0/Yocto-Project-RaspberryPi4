@@ -421,18 +421,7 @@ After successful configuration and build setup, the Yocto environment was valida
 bitbake-layers show-layers
 ```
 **Output:**
-```bash 
-layer                 path                                      priority
-==========================================================================
-meta                  /home/esraa/poky/meta                     5
-meta-poky             /home/esraa/poky/meta-poky                5
-meta-yocto-bsp        /home/esraa/poky/meta-yocto-bsp           5
-meta-raspberrypi      /home/esraa/poky/meta-raspberrypi         6
-meta-openembedded     /home/esraa/poky/meta-openembedded        7
-meta-qt5              /home/esraa/poky/meta-qt5                 7
-meta-distros          /home/esraa/poky/meta-distros             8
-meta-IVI              /home/esraa/poky/meta-IVI                 8
-``` 
+
 ![BitBake Layers Output](Images/bitbakelayers.png)
 
 This confirms that all layers were successfully added to the build environment, including:
@@ -446,3 +435,12 @@ The final image was built using:
 ```bash 
 bitbake ivi-test-image
 ``` 
+**Generated Artifacts:**
+- `ivi-test-image-raspberrypi4.rootfs.ext4` → Root filesystem image
+- `ivi-test-image-raspberrypi4.rpi-sdimg` → SD card flashable image
+- SDK installer for cross-compiling applications
+
+You can find these under:
+```bash 
+build/tmp/deploy/images/raspberrypi4/
+```
