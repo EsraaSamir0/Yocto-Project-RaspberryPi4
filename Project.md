@@ -425,10 +425,10 @@ bitbake-layers show-layers
 ![BitBake Layers Output](Images/bitbakelayers.png)
 
 This confirms that all layers were successfully added to the build environment, including:
-**Board Support Layer (BSP):** `meta-raspberrypi`
-**UI Framework:** `meta-qt5`
-**Custom Distributions:** `meta-distros`
-**Application Layer:** `meta-ivi`
+- **Board Support Layer (BSP):** `meta-raspberrypi`
+- **UI Framework:** `meta-qt5`
+- **Custom Distributions:** `meta-distros`
+- **Application Layer:** `meta-ivi`
 
 ### Image Build Output 
 The final image was built using:
