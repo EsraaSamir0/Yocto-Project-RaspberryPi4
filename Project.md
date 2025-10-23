@@ -1,5 +1,6 @@
 ## Yocto Infotainment Project for RaspberryPi4
-This project demonstrates how to build a custom Linux-based image for Raspberry Pi 4 using the Yocto Project. It includes two different distributions (Infotainment & Audio), integrates Qt5 for GUI applications, and adds custom software layers for testing, audio features, and system configuration.
+This project demonstrates how to build a custom Linux-based image for Raspberry Pi 4 using the Yocto Project. It includes two different distributions (Infotainment & Audio), integrates Qt5 for GUI applications, and adds custom software layers for testing, audio features, and system configuration. 
+
 Here's a step-by-step breakdown of The Project : 
 
 ---
@@ -412,3 +413,36 @@ Choose the Desired Distro `audio` or `ivi` in `local.conf` and Run:
 ```bash
 bitbake ivi-test-image
 ```
+
+---
+## Results 
+After successful configuration and build setup, the Yocto environment was validated using:
+```bash
+bitbake-layers show-layers
+```
+**Output:**
+
+layer                 path                                      priority
+==========================================================================
+meta                  /home/esraa/poky/meta                     5
+meta-poky             /home/esraa/poky/meta-poky                5
+meta-yocto-bsp        /home/esraa/poky/meta-yocto-bsp           5
+meta-raspberrypi      /home/esraa/poky/meta-raspberrypi         6
+meta-openembedded     /home/esraa/poky/meta-openembedded        7
+meta-qt5              /home/esraa/poky/meta-qt5                 7
+meta-distros          /home/esraa/poky/meta-distros             8
+meta-IVI              /home/esraa/poky/meta-IVI                 8
+
+![BitBake Layers Output](Images/bitbakelayers.png)
+
+This confirms that all layers were successfully added to the build environment, including:
+**Board Support Layer (BSP):** `meta-raspberrypi`
+**UI Framework:** `meta-qt5`
+**Custom Distributions:** `meta-distros`
+**Application Layer:** `meta-ivi`
+
+### Image Build Output 
+The final image was built using:
+```bash 
+bitbake ivi-test-image
+``` 
